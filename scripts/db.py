@@ -1,9 +1,9 @@
-from load_dataset import download_from_kaggle
 from sqlalchemy import create_engine
+import pandas as pd
 import json
 
 
-def create_table(df, table_name):
+def get_connection_string():
     # todo change path to your config.json file
     with open('../config/config.json') as config_file:
         config = json.load(config_file)
@@ -16,9 +16,11 @@ def create_table(df, table_name):
 
     # I use Filess https://filess.io/ and MySQL
     connection_string = f'mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}'
-    engine = create_engine(connection_string)
+    return connection_string
 
-    print(df)
+
+def create_table(df, table_name):
+    engine = create_engine(get_connection_string())
 
     # create table
     df.to_sql(name=table_name, con=engine, index=False, if_exists='replace')
@@ -28,6 +30,9 @@ def create_table(df, table_name):
     # print(result_df)
 
 
-# table_name = 'HotelBookingDemand'
-# df = download_from_kaggle()
-# create_table(df, table_name)
+def load_dataset(table_name):
+    connection_string = get_connection_string()
+    engine = create_engine(connection_string)
+
+    # return dataframe
+    return pd.read_sql(f'SELECT * FROM {table_name}', con=engine)
