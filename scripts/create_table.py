@@ -1,8 +1,6 @@
-import pandas as pd
+from load_dataset import download_from_kaggle
 from sqlalchemy import create_engine
 import json
-
-
 
 
 def create_table(df, table_name):
@@ -26,10 +24,10 @@ def create_table(df, table_name):
     df.to_sql(name=table_name, con=engine, index=False, if_exists='replace')
 
     # read the data to see if it was created if needed
-    result_df = pd.read_sql(f'SELECT * FROM {table_name}', con=engine)
-    print(result_df)
+    # result_df = pd.read_sql(f'SELECT * FROM {table_name}', con=engine)
+    # print(result_df)
 
 
-table_name = 'HotelBookingDemand'
-df = load_from_csv()
-create_table(df, table_name)
+# table_name = 'HotelBookingDemand'
+# df = download_from_kaggle()
+# create_table(df, table_name)

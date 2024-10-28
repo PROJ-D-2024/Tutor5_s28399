@@ -5,7 +5,7 @@ import json
 import os
 
 
-def load_from_csv():
+def download_from_kaggle():
     url = 'https://www.kaggle.com/api/v1/datasets/download/jessemostipak/hotel-booking-demand'
 
     save_to = '../data/'
