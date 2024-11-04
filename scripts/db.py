@@ -24,7 +24,7 @@ def get_connection_string():
             port = config['database']['port']
             database = config['database']['database']
         except KeyError as e:
-            raise KeyError(f'could not find needed key in config file') from e
+            raise KeyError('could not find needed key in config file') from e
 
         # I use Filess https://filess.io/ and MySQL
         connection_string = f'mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}'
@@ -34,7 +34,7 @@ def get_connection_string():
         raise RuntimeError(f'configuration file {config_file_path} not found error or permission error') from e
 
     except json.JSONDecodeError as e:
-        raise ValueError("error parsing the configuration file") from e
+        raise RuntimeError('error parsing the configuration file') from e
 
     except Exception as e:
         raise RuntimeError('unexpected error occurred') from e
