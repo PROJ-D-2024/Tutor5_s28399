@@ -1,3 +1,7 @@
+# Project-specific files / folders
+config/
+data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -11,7 +15,6 @@ __pycache__/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
-config/
 
 # Distribution / packaging
 .Python
