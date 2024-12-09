@@ -1,64 +1,28 @@
-# Hotel Booking Demand Data Cleaning and Preprocessing
-
-This project focuses on cleaning and preprocessing the Hotel Booking Demand dataset:
-https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand/data. 
-The goal is to prepare the data for further analysis by handling missing values, correcting data types, fixing outliers, and normalizing and standardizing relevant columns.
-
-## Prerequisites
-
-To run this project, you need the following installed on your system:
-
-- Python 3.x
-- Pandas library
-- MySQL database (if you want to create a table in your database and load data from there)
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sofeeka/Tutor2
-   cd hotel-booking-data-cleaning
-    ```
-2. Install necessary packages
-    ```
-    pip install pandas kaggle
-    ```
-    ```
-    pip install sqlalchemy
-    ```
-3. Usage
-    Load the dataset. For initial loading use load_dataset from kaggle.py file
-    ```
-    from kaggle import load_dataset as load_dataset_kaggle
-    df = load_dataset_kaggle()
-    ```
-    
-    If you want to save it to db and load it from there later: 
-    - configure your user credentials for MySQL database in config.json file. 
-    Example config.json file:
-        ```
-        {
-            "database": 
-            {
-                "user": "your_username",
-                "password": "your_password",
-                "host": "your_host",
-                "port": "your_port",
-                "database": "your_database"
-            }
-        }
-        ```
-        Change the location of the config file in the db.py method `get_connection_string()` (search `todo` for easier navigation)
-        
-        When you have a dataframe create a table
-        ```
-        table_name = 'HotelBookingDemand'
-        create_table(df, table_name)
-        ```
-        
-        Now you can load data from the db
-        ```
-        from db import load_dataset as load_dataset_db
-        df = load_dataset_db("HotelBookingDemand")
-        ```
-    
+#### This README file is a designed and visualised Architecture of predictions of hotel booking cancelletions based on Kaggle's public `Hotel Booking Demand` dataset. 
+##### It includes necessary diagrams and short descriptions toprovide clarity.
+### 1. Components 
+- **API**: for getting predictions
+- **Random Forest Classifier AI Model**: predicts if booking will be cancelled
+- **Raw dataset**: Kaggle public `Hotel Booking Demand` dataset
+- **Cloud database**: `Files.io` MySQL cloud database for storing the clean dataset
+### 2. Data Flow
+##### Diagram
+![DataFlow diagram in diagrams/DataFlow.png](diagrams/DataFlow.png)
+##### Description
+- Initially the raw dataset is loaded from Kaggle Public Datasets.
+- In data preparation step data is cleaned, normalized and standartized. 
+- After cleaning clean data is saved to the `Filess.io` MySQL database. 
+- The data is loaded again from the cloud database and used for training.
+- The trained model is then saved and stored in .h5 file.
+- Predictions are possible through the API.
+### 3. System Architecture Design 
+##### Diagram
+![SystemArchitecture diagram in diagrams/SystemArchitecture.png](diagrams/SystemArchitecture.png)
+##### Description
+- Initially the raw dataset is loaded from Kaggle Public Datasets.
+- The data in a form of pandas Dataframe is prepared to training using prepare_data.py.
+- Prepared clean data is in a form of a Dataframe.
+- Clean data is then saved to the `Filess.io` MySQL database.
+- Clean data is loaded again from the cloud database and used for training the model using train_model.py.
+- The trained model is then saved and stored locally in .h5 file.
+- Prediction requests can be made through the API and using predict.py.
