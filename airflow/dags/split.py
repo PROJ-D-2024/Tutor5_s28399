@@ -42,7 +42,6 @@ def split_and_upload_data(**kwargs):
     upload_to_google_sheets(pd.concat([test_X, test_y], axis=1), 'Testing Dataset', json_keyfile_path)
 
 
-# Define DAG
 with DAG(
         dag_id="dag1_download_split",
         start_date=datetime(2024, 12, 16),
