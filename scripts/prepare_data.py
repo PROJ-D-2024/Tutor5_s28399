@@ -1,5 +1,6 @@
 from kaggle import load_dataset as load_dataset_kaggle
 from db import load_dataset as load_dataset_db, prepare_data_for_create_table
+from sklearn.model_selection import train_test_split
 
 table_name = 'HotelBookingDemand'
 
@@ -102,3 +103,19 @@ def get_clean_dataset():
     final_df = prepare_data_for_create_table(df)
 
     return final_df
+
+
+def split_to_xy(data, y_column_index=0):
+    df_y = data.iloc[:, y_column_index]
+    df_x = data.drop(data.columns[y_column_index], axis=1)
+
+    return df_x, df_y
+
+
+def get_train_test_xy(data, y_column_index=0):
+    train_df, test_df = train_test_split(data, test_size=0.2, random_state=17)
+
+    train_x, train_y = split_to_xy(train_df, y_column_index)
+    test_x, test_y = split_to_xy(test_df, y_column_index)
+
+    return train_x, train_y, test_x, test_y
