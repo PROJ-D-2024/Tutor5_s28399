@@ -3,9 +3,9 @@
 ##### It includes necessary diagrams and short descriptions to provide clarity.
 ### 1. DAGs
 ##### DAG1
-![DAG in diagrams/dag1.jpeg](diagrams/dag1.jpeg)
+![DAG in diagrams/dag1.jpg](diagrams/dag1.jpg)
 ##### DAG2
-![DAG in diagrams/dag2.jpeg](diagrams/dag1.jpeg)
+![DAG in diagrams/dag2.jpg](diagrams/dag2.jpg)
 ### 2. Components 
 - **API**: Getting Model Predictions
 - **Random Forest Classifier AI Model**: Predict if a booking will be cancelled
