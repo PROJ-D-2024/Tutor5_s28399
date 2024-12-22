@@ -1,11 +1,17 @@
 #### This README file is a designed and visualised Architecture of predictions of hotel booking cancelletions based on Kaggle's public `Hotel Booking Demand` dataset. 
+#### UPD: with supporting DAGs
 ##### It includes necessary diagrams and short descriptions to provide clarity.
-### 1. Components 
+### 1. DAGs
+##### DAG1
+![DAG in diagrams/dag1.jpeg](diagrams/dag1.jpeg)
+##### DAG2
+![DAG in diagrams/dag2.jpeg](diagrams/dag1.jpeg)
+### 2. Components 
 - **API**: Getting Model Predictions
 - **Random Forest Classifier AI Model**: Predict if a booking will be cancelled
 - **Raw dataset**: Kaggle public `Hotel Booking Demand` dataset
 - **Cloud database**: `Files.io` MySQL Cloud Database for storing the clean dataset
-### 2. Data Flow
+### 3. Data Flow
 ##### Diagram
 ![DataFlow diagram in diagrams/DataFlow.png](diagrams/DataFlow.png)
 ##### Description
@@ -15,7 +21,7 @@
 - The data from the cloud database is used for model training.
 - The trained model is then saved and stored in `.h5` file.
 - Predictions are possible through API.
-### 3. System Architecture Design 
+### 4. System Architecture Design 
 ##### Diagram
 ![SystemArchitecture diagram in diagrams/SystemArchitecture.png](diagrams/SystemArchitecture.png)
 ##### Description
