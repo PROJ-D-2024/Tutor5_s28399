@@ -32,7 +32,7 @@ def download_data(**kwargs):
     kwargs['ti'].xcom_push(key='dataset', value=df)
 
 
-def split_and_upload_data(**kwargs):
+def split_upload_data(**kwargs):
     df = pd.DataFrame(kwargs['ti'].xcom_pull(task_ids='download_data', key='dataset'))
 
     train_X, test_X, train_y, test_y = get_train_test_xy(df)
@@ -48,14 +48,14 @@ with DAG(
         schedule_interval="@once",
         catchup=False
 ) as dag:
-    task_download_data = PythonOperator(
+    download_data_task = PythonOperator(
         task_id="download_data",
         python_callable=download_data
     )
 
-    task_split_upload = PythonOperator(
+    split_upload_data_task = PythonOperator(
         task_id="split_and_upload_data",
-        python_callable=split_and_upload_data
+        python_callable=split_upload_data
     )
 
-    task_download_data >> task_split_upload
+    download_data_task >> split_upload_data_task
