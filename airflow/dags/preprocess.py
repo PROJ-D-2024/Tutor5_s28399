@@ -2,8 +2,8 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 import pandas as pd
-from Tutor2.scripts.prepare_data import get_clean_dataset
-from Tutor2.scripts.db import create_table
+from Tutor6.scripts.prepare_data import get_clean_dataset
+from Tutor6.scripts.db import create_table
 
 
 def download_data(**kwargs):

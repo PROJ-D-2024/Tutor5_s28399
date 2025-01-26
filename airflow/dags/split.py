@@ -4,7 +4,7 @@ from datetime import datetime
 import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from Tutor2.scripts.prepare_data import get_clean_dataset, get_train_test_xy
+from Tutor6.scripts.prepare_data import get_clean_dataset, get_train_test_xy
 
 
 def authenticate_gspread(json_keyfile_path):
